@@ -10,20 +10,18 @@ terraform {
 
 provider "aws" {
   region = "eu-central-1"
+  default_tags {
+    tags = {
+      Owner     = "Terraform"
+      ProjectID = "666"
+    }
+  }
 }
 
 resource "aws_instance" "app_server" {
   ami           = "ami-04c921614424b07cd" # Das Ist ein Kommentar
-  instance_type = "t3.micro"
-  tags = {
-    Name = "foo-bar"
-  }
-}
-
-resource "aws_instance" "db_server" {
-  ami           = "ami-04c921614424b07cd" # Das Ist ein Kommentar
   instance_type = "t2.micro"
   tags = {
-    Name = "foo-bar2"
+    Name = "mro-test"
   }
 }
