@@ -1,4 +1,5 @@
 resource "aws_instance" "app_server" {
+  count                       = 2
   ami                         = "ami-04c921614424b07cd" # Das Ist ein Kommentar
   subnet_id                   = aws_subnet.public.id
   instance_type               = "t2.micro"
@@ -7,7 +8,7 @@ resource "aws_instance" "app_server" {
   user_data                   = file("install_webserver.sh")
 
   tags = {
-    Name = "mro-test"
+    Name = "App Server ${count.index + 1}"
   }
 }
 
