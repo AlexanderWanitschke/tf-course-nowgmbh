@@ -7,6 +7,14 @@ variable "ami_id" {
   }
 }
 
+variable "s3bucket_name" {
+  default = "zh-42-test-123"
+}
+
+variable "static_bucket_name" {
+  default = "mro-static-website"
+}
+
 variable "common_tags" {
   type = map(string)
   default = {
