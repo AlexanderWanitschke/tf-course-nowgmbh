@@ -1,8 +1,8 @@
 resource "aws_instance" "app_server" {
-  count                       = 2
-  ami                         = "ami-04c921614424b07cd" # Das Ist ein Kommentar
+  count                       = var.app_server_count
+  ami                         = var.ami_id # here we use the variabile
   subnet_id                   = aws_subnet.public.id
-  instance_type               = "t2.micro"
+  instance_type               = var.instance_type
   vpc_security_group_ids      = [aws_security_group.web_access.id]
   associate_public_ip_address = true
   user_data                   = file("install_webserver.sh")
