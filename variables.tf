@@ -7,6 +7,12 @@ variable "ami_id" {
   }
 }
 
+variable "db_server_build" {
+  type        = bool
+  description = "should we build db_server"
+  default     = true
+}
+
 variable "instance_type" {
   type        = string
   description = "The instance type to use for the instance"

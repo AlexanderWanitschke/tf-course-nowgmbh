@@ -12,6 +12,19 @@ resource "aws_instance" "app_server" {
   }
 }
 
+resource "aws_instance" "db_server" {
+  count                  = var.db_server_build ? 1 : 0
+  ami                    = lookup(var.ami_id, var.region) # here we use the variabile
+  subnet_id              = aws_subnet.public.id
+  instance_type          = var.instance_type
+  vpc_security_group_ids = [aws_security_group.web_access.id]
+
+  tags = {
+    Name = "DB Server"
+  }
+}
+
+
 resource "aws_security_group" "web_access" {
   name        = "sg_web_security_group_mro"
   description = "Terraform web security group"
