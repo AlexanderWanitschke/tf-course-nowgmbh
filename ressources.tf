@@ -6,10 +6,9 @@ resource "aws_instance" "app_server" {
   vpc_security_group_ids      = [aws_security_group.web_access.id]
   associate_public_ip_address = true
   user_data                   = file("install_webserver.sh")
-
-  tags = {
-    Name = "App Server ${count.index + 1}"
-  }
+  tags = merge(var.common_tags, {
+    Name = "AppSrv-${count.index + 1}"
+  })
 }
 
 resource "aws_instance" "db_server" {

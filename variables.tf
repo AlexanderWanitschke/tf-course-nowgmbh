@@ -7,6 +7,18 @@ variable "ami_id" {
   }
 }
 
+variable "common_tags" {
+  type = map(string)
+  default = {
+    Department  = "Global Infrastructure Services"
+    Team        = "EMEA Delivery"
+    CostCenter  = "12345"
+    Application = "Intranet-Portal"
+    SLA         = "Standard"
+    KRITIS      = "No"
+  }
+}
+
 variable "db_server_build" {
   type        = bool
   description = "should we build db_server"
