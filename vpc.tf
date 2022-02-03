@@ -9,7 +9,7 @@ resource "aws_vpc" "my_vpc" {
 resource "aws_subnet" "public" {
   vpc_id            = aws_vpc.my_vpc.id
   cidr_block        = "10.0.0.0/24"
-  availability_zone = "eu-central-1a"
+  availability_zone = "${var.region}a"
   tags = {
     Name = "Public Subnet-MRO"
   }
@@ -22,7 +22,7 @@ resource "aws_internet_gateway" "my_vpc_igw" {
   }
 }
 
-resource "aws_route_table" "my_vpc_eu_central_1a_public" {
+resource "aws_route_table" "my_vpc_routetable_1a_public" {
   vpc_id = aws_vpc.my_vpc.id
   route {
     cidr_block = "0.0.0.0/0"
@@ -33,7 +33,7 @@ resource "aws_route_table" "my_vpc_eu_central_1a_public" {
   }
 }
 
-resource "aws_route_table_association" "my_vpc_eu_central_1a_public" {
+resource "aws_route_table_association" "my_vpc_routetable_1a_public" {
   subnet_id      = aws_subnet.public.id
-  route_table_id = aws_route_table.my_vpc_eu_central_1a_public.id
+  route_table_id = aws_route_table.my_vpc_routetable_1a_public.id
 }

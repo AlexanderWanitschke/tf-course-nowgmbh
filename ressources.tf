@@ -1,6 +1,6 @@
 resource "aws_instance" "app_server" {
   count                       = var.app_server_count
-  ami                         = var.ami_id # here we use the variabile
+  ami                         = lookup(var.ami_id, var.region) # here we use the variabile
   subnet_id                   = aws_subnet.public.id
   instance_type               = var.instance_type
   vpc_security_group_ids      = [aws_security_group.web_access.id]
