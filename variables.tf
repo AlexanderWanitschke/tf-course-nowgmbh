@@ -15,3 +15,9 @@ variable "app_server_count" {
   description = "The number of app servers to start"
   default     = 2
 }
+
+variable "region" {
+  type        = string
+  description = "The region to use for the instance"
+  default     = "eu-central-1"
+}
