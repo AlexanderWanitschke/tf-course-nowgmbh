@@ -8,9 +8,9 @@ variable "ami_id" {
 }
 
 variable "instance_type" {
-  type         = string
-  description  = "The instance type to use for the instance"
-  defaulucidlt = "t2.micro"
+  type        = string
+  description = "The instance type to use for the instance"
+  default     = "t2.micro"
 }
 
 variable "app_server_count" {
